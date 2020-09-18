@@ -13,3 +13,26 @@ class Playlist(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'playlist_id': self.id})
+
+    def comment_count(self):
+        return self.comment_set.count()
+
+
+class Comment(models.Model):
+    date = models.DateField(
+        'Comment Date'
+    )
+    comment = models.TextField(max_length=250)
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Comment left on {self.date} - {self.comment}"
+
+    class Meta:
+        ordering = ['-date']
+
+
+# class Song(models.Model):
+    # use Field.choices for genre?
+    # https://git.generalassemb.ly/SEI-CC/SEI-CC-9/blob/master/work/w08/d3/03-04-django-one-to-many-models/django-one-to-many-models.md#fieldchoices
+    # https://git.generalassemb.ly/SEI-CC/SEI-CC-9/blob/master/work/w08/d3/03-04-django-one-to-many-models/django-one-to-many-models.md#fix-the-meal-select

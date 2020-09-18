@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ playlist.title }}</h1>
-<p>{{ playlist.description }}</p>
+<h1>Playlist Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ playlist.title }}</span>
+        {% if playlist.description %}
+        {{ playlist.description }}
+        {% endif %}
+    </div>
+    <div class="card-action">
+        <a href="{% url 'playlists_update' playlist.id %}" class="deep-purple-text text-darken-2">Edit</a>
+        <a href="{% url 'playlists_delete' playlist.id %}" class="deep-purple-text text-darken-2">Delete</a>
+    </div>
+</div>
 
 {% endblock %}

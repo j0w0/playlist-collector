@@ -7,9 +7,9 @@
 <div class="card">
     <a href="{% url 'detail' playlist.id %}">
         <div class="card-content">
-            <span class="card-title">{{ playlist.title }}</span>
+            <span class="card-title deep-purple-text text-darken-2">{{ playlist.title }}</span>
             {% if playlist.description %}
-            <p>{{ playlist.description }}</p>
+            <p class="grey-text">{{ playlist.description }}</p>
             {% endif %}
         </div>
     </a>

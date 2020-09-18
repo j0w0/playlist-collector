@@ -14,14 +14,15 @@
 
 <body>
     <header class="navbar-fixed">
-        <nav>
+        <nav class="deep-purple darken-2">
             <div class="nav-wrapper">
                 <ul>
                     <li><a href="/" class="left brand-logo">&nbsp;Playlist Collector&nbsp;</a></li>
                 </ul>
                 <ul class="right">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/playlists">Playlists</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'playlists_create' %}">New Playlist</a></li>
+                    <li><a href="{% url 'index' %}">View Playlists</a></li>
                 </ul>
             </div>
         </nav>
@@ -30,8 +31,8 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
-        <div class="center">Josh Woodcock - 2020</div>
+    <footer class="page-footer grey lighten-3">
+        <div class="center grey-text">Josh Woodcock - 2020</div>
     </footer>
 </body>
 

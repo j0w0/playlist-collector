@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Playlists</h1>
+
+{% for playlist in playlists %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ playlist.title }}</span>
+        {% if playlist.description %}
+        <p>{{ playlist.description }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

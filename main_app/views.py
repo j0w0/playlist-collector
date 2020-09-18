@@ -1,25 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Playlist
 
 # Create your views here.
 
 
-class Playlist:
-    def __init__(self, title, description):
-        self.title = title
-        self.description = description
-
-
-playlists = [
-    Playlist('House', '😎'),
-    Playlist('TripHop', 'Nice.'),
-    Playlist('90s Mix', 'Nineties.'),
-    Playlist('Cumbia', 'Good music.')
-]
-
-
 def home(request):
-    return HttpResponse('<h1>Hello!</h1>')
+    return render(request, 'home.html')
 
 
 def about(request):
@@ -27,4 +13,10 @@ def about(request):
 
 
 def playlists_index(request):
+    playlists = Playlist.objects.all()
     return render(request, 'playlists/index.html', {'playlists': playlists})
+
+
+def playlists_detail(request, playlist_id):
+    playlist = Playlist.objects.get(id=playlist_id)
+    return render(request, 'playlists/detail.html', {'playlist': playlist})

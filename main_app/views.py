@@ -22,10 +22,12 @@ def playlists_index(request):
 
 def playlists_detail(request, playlist_id):
     playlist = Playlist.objects.get(id=playlist_id)
+    available_songs = Song.objects.exclude(id__in=playlist.songs.all())
     comment_form = CommentForm()
     return render(request, 'playlists/detail.html', {
         'playlist': playlist,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'songs': available_songs,
     })
 
 

@@ -16,15 +16,14 @@
     </div>
 </div>
 
-<h4>Songs</h4>
+<h4>Songs on Playlist</h4>
 
 {% if playlist.songs.count %}
 {% for song in playlist.songs.all %}
 <div class="card">
     <div class="card-content">
-        <span class="card-title">
-            {{ song.title }}
-        </span>
+        <span class="card-title">{{ song.title }}</span>
+        <p>Artist: {{ song.artist }}</p>
     </div>
     <div class="card-action">
         <form action="{% url 'unassoc_song' playlist.id song.id %}" method="post">
@@ -38,25 +37,26 @@
 <p>No songs yet.</p>
 {% endif %}
 
+<h4>Available Songs</h4>
 
 {% if songs.count %}
 {% for song in songs.all %}
 <div class="card">
     <div class="card-content">
-        <span class="card-title">
-            {{ song.title }}
-        </span>
+        <span class="card-title">{{ song.title }}</span>
+        <p>Artist: {{ song.artist }}</p>
     </div>
     <div class="card-action">
-        <form action="{% url 'assoc_song' playlist.id song.id %}" method="post">
+        <form action="{% url 'assoc_song' playlist.id song.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="btn">Add</button>
         </form>
     </div>
 </div>
 {% endfor %}
+{% else %}
+<p>Playlist has all the songs available.</p>
 {% endif %}
-
 
 <h4>Comments</h4>
 
